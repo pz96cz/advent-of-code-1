@@ -24,12 +24,7 @@ const startup = async(path) => {
             }
 
             if (direction === 'L') {
-                if (amount > actualValue) {
-                    actualValue = 100 - (actualValue - amount);
-                }
-                else {
-                    actualValue = actualValue - amount;
-                }
+                actualValue = (actualValue - amount) % 100;
 
             }
             if (actualValue === 0) zeroCounter++;
