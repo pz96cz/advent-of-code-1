@@ -7,6 +7,7 @@ const INPUT_PATH = 'static/input.txt';
 const startup = async(path) => {
     let actualValue = STARTING_VALUE;
     let zeroCounter = 0;
+
     try {
         const fileStream = fs.createReadStream(path);
 
@@ -16,6 +17,8 @@ const startup = async(path) => {
         });
 
         for await (const line of rl) {
+            if (!line.length) return;
+
             const direction = line.charAt(0);
             const amount = Number(line.substring(1));
 
@@ -25,8 +28,8 @@ const startup = async(path) => {
 
             if (direction === 'L') {
                 actualValue = (actualValue - amount) % 100;
-
             }
+
             if (actualValue === 0) zeroCounter++;
         }
 
